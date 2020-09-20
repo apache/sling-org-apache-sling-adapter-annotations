@@ -1,0 +1,8 @@
+github:
+  description: "Apache Sling Adapter Annotations"
+  homepage: "https://sling.apache.org/"
+  labels:
+    - sling
+    - java
+    - annotations
+    - adapters
