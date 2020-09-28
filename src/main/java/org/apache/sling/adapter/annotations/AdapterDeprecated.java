@@ -16,8 +16,20 @@
  */
 package org.apache.sling.adapter.annotations;
 
+import org.apache.sling.api.adapter.AdapterFactory;
 import org.osgi.service.component.annotations.ComponentPropertyType;
 
+/**
+ * Component Property Type (as defined by OSGi DS 1.4) for the condition for Sling Adapters.
+ * Takes care of writing the service property <code>adapter.deprecated</code>.
+ * <p>
+ * The use of this annotation will only have an effect if used in conjunction with the {@link SlingAdapter}
+ * annotation, which defines properties that are required for an {@link AdapterFactory} to be picked up.
+ * <p>
+ * Use this annotation to mark the adapter as deprecated. The only consequence of setting this property
+ * is an indication in the Web Console Plugin, where it is made apparent to a developer that the use
+ * of this adapter is deprecated and may not work anymore in the future.
+ */
 @ComponentPropertyType
 public @interface AdapterDeprecated {
 }

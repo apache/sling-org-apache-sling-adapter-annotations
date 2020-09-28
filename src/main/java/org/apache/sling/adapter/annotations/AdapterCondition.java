@@ -16,9 +16,26 @@
  */
 package org.apache.sling.adapter.annotations;
 
+import org.apache.sling.api.adapter.AdapterFactory;
 import org.osgi.service.component.annotations.ComponentPropertyType;
 
+/**
+ * Component Property Type (as defined by OSGi DS 1.4) for the condition for Sling Adapters.
+ * Takes care of writing the service property <code>adapter.condition</code>.
+ * <p>
+ * The use of this annotation will only have an effect if used in conjunction with the {@link SlingAdapter}
+ * annotation, which defines properties that are required for an {@link AdapterFactory} to be picked up.
+ * <p>
+ * Use this annotation to specify the condition under which the adaption will take place. The
+ * main use-case for annotating a class with this annotation, is when the result of the adaption
+ * could be <code>null</code>.
+ */
 @ComponentPropertyType
 public @interface AdapterCondition {
+    /**
+     * Specifies the condition under which this adaption takes place. The most common way to do this
+     * is to use a language such as "If the ... is a ...", "If the adaptable ...", etc.
+     * @return The condition under which this adaption takes place
+     */
     String value();
 }
