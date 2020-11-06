@@ -175,6 +175,7 @@
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.api</artifactId>
+            <!-- keep the version in sync with it-model-txt (SLING-8080) -->
             <version>2.20.0</version>
             <scope>provided</scope>
         </dependency>
@@ -194,6 +195,7 @@
         <dependency>
             <groupId>org.apache.sling</groupId>
             <artifactId>org.apache.sling.servlets.resolver</artifactId>
+            <!-- keep the version in sync with it-model-txt (SLING-8080) -->
             <version>2.5.2</version>
             <scope>test</scope>
         </dependency>
