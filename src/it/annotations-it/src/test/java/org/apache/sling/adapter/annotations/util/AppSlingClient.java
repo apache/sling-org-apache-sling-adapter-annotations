@@ -34,7 +34,7 @@ public class AppSlingClient {
         final SlingClient client = new SlingClient(new URI(System.getProperty("baseUrl")), "admin", "admin");
 
         // client.waitExists() adds ".json" to the path, which is not desired, since that requests the Sling Default GET Servlet instead of Sling Starter HTML
-        new Polling(() -> client.doGet("/starter/index.html").getStatusLine().getStatusCode() == 200)
+        new Polling(() -> client.doGet("/starter.html").getStatusLine().getStatusCode() == 200)
                 .poll(60_000, 500);
 
         if (!bundleInstalledAndStarted) {
