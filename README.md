@@ -6,12 +6,9 @@
 
 This module is part of the [Apache Sling](https://sling.apache.org) project.
 
-OSGi DS 1.4 component property type annotations for Sling adapters|
+It implements OSGi DS 1.4 component property type annotations for Sling adapters.
 
-These annotations are documented on the following Apache Sling website page:
-
-  * https://sling.apache.org/documentation/the-sling-engine/adapters.html
-
-And the code of the companion 
-[integration tests module](https://github.com/apache/sling-org-apache-sling-adapter-annotations-it) can help
-understand the details.
+These annotations are documented on the
+[Apache Sling Adapters](https://sling.apache.org/documentation/the-sling-engine/adapters.html) documentation page,
+and the code of the integration tests (under `src/it/annotations-it/`) 
+can help understand the details.
