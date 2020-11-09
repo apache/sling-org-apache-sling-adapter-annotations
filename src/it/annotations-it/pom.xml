@@ -92,7 +92,7 @@
                         </goals>
                         <configuration>
                             <modelDirectory>${project.basedir}/src/test/provisioning</modelDirectory>
-                            <usePomDependencies>true</usePomDependencies>
+                            <usePomDependencies>false</usePomDependencies>
                         </configuration>
                     </execution>
                     <execution>
