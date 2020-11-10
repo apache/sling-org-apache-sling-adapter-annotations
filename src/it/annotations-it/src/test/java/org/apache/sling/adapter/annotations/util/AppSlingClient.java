@@ -33,7 +33,8 @@ public class AppSlingClient {
         "/starter.html",
         "/system/console/status-adapters.txt",
         "/system/console/components",
-        "/system/console/services"
+        "/system/console/services",
+        "/system/console/services.json"
     };
 
     @SuppressWarnings("squid:S2095") // Caller will close the client
