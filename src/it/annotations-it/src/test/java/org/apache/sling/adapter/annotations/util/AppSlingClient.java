@@ -29,13 +29,20 @@ import java.util.concurrent.TimeoutException;
 public class AppSlingClient {
     private static boolean bundleInstalledAndStarted;
 
+    private static final String [] READINESS_PATHS = {
+        "/starter.html",
+        "/system/console/status-adapters.txt",
+        "/system/console/components",
+        "/system/console/services"
+    };
+
     @SuppressWarnings("squid:S2095") // Caller will close the client
     public static SlingClient newSlingClient() throws URISyntaxException, ClientException, TimeoutException, InterruptedException {
         final SlingClient client = new SlingClient(new URI(System.getProperty("baseUrl")), "admin", "admin");
 
         // client.waitExists() adds ".json" to the path, which is not desired, since that requests the Sling Default GET Servlet instead of Sling Starter HTML
-        new Polling(() -> client.doGet("/starter.html").getStatusLine().getStatusCode() == 200)
-                .poll(60_000, 500);
+        new Polling(() -> allPathsOk(client, READINESS_PATHS, 200))
+            .poll(60_000, 500);
 
         if (!bundleInstalledAndStarted) {
             final OsgiConsoleClient osgiConsoleClient = client.adaptTo(OsgiConsoleClient.class);
@@ -44,5 +51,16 @@ public class AppSlingClient {
             bundleInstalledAndStarted = true;
         }
         return client;
+    }
+
+    /** @return true if all paths return expected status */
+    private static boolean allPathsOk(SlingClient client, String [] paths, int expectedStatus) throws ClientException, InterruptedException {
+        for(String path : paths) {
+            final int actualStatus = client.doGet(path).getStatusLine().getStatusCode();
+            if(actualStatus != expectedStatus) {
+                throw new ClientException("Expected status " + expectedStatus + " but got " + actualStatus + " for " + path);
+            }
+        }
+        return true;
     }
 }
