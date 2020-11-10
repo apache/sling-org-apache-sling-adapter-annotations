@@ -12,3 +12,5 @@ These annotations are documented on the
 [Apache Sling Adapters](https://sling.apache.org/documentation/the-sling-engine/adapters.html) documentation page,
 and the code of the integration tests (under `src/it/annotations-it/`) 
 can help understand the details.
+
+We also have an older [Sling Adapter Annotations (JSON)](https://github.com/apache/sling-adapter-annotations) module, which implements Annotations used to generate a Sling Adapter metadata JSON file.
