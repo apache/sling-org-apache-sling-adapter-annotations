@@ -63,6 +63,13 @@
                     <!-- this causes verbose output, probably good to have for CI builds? -->
                     <streamLogs>true</streamLogs>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy</artifactId>
+                        <version>3.0.6</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <id>integration-test</id>
