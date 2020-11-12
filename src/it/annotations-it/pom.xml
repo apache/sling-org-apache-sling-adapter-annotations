@@ -48,112 +48,9 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
-            </plugin>
-            <plugin>
                 <groupId>biz.aQute.bnd</groupId>
                 <artifactId>bnd-maven-plugin</artifactId>
                 <version>5.0.0</version>
-            </plugin>
-            <plugin>
-                <!-- Find free ports to run our server -->
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>build-helper-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>reserve-server-port</id>
-                        <goals>
-                            <goal>reserve-network-port</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                        <configuration>
-                            <portNames>
-                                <!-- used port name must be stored in property because it must be used for the base url -->
-                                <portName>http.port</portName>
-                            </portNames>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <!-- the Sling instance is provisioned from the model in src/main/provisioning/it-model.txt -->
-                <groupId>org.apache.sling</groupId>
-                <artifactId>slingstart-maven-plugin</artifactId>
-                <!-- for https://issues.apache.org/jira/browse/SLING-7662 -->
-                <version>1.9.8</version>
-                <extensions>true</extensions>
-                <executions>
-                    <execution>
-                        <id>customise-starter</id>
-                        <goals>
-                            <goal>prepare-package</goal>
-                        </goals>
-                        <configuration>
-                            <modelDirectory>${project.basedir}/src/test/provisioning</modelDirectory>
-                            <usePomDependencies>false</usePomDependencies>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>package-starter</id>
-                        <goals>
-                            <goal>package</goal>
-                        </goals>
-                        <configuration>
-                            <attachArtifact>false</attachArtifact>
-                            <modelDirectory>${project.basedir}/src/test/provisioning</modelDirectory>
-                            <usePomDependencies>true</usePomDependencies>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>start-container-before-IT</id>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>stop-container-after-IT</id>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                        <configuration>
-                            <shouldBlockUntilKeyIsPressed>${keepITServerRunning}</shouldBlockUntilKeyIsPressed>
-                        </configuration>
-                    </execution>
-                </executions>
-                <configuration>
-                    <servers>
-                        <!-- this configuration applies to both 'start' and 'stop' -->
-                        <server>
-                            <id>singleinstance</id>
-                            <port>${http.port}</port>
-                            <vmOpts>${sling.vm.options}</vmOpts>
-                            <stdOutFile>sling/logs/stdout.log</stdOutFile>
-                        </server>
-                    </servers>
-                    <!-- this configuration only applies to 'prepare-package' and 'package' -->
-                    <disableExtendingMavenClasspath>true</disableExtendingMavenClasspath>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>integration-test</goal>
-                            <goal>verify</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <systemPropertyVariables>
-                        <baseUrl>http://${http.host}:${http.port}/</baseUrl>
-                        <bundleFile>${project.build.directory}/${project.build.finalName}.jar</bundleFile>
-                        <bundleSymbolicName>${project.artifactId}</bundleSymbolicName>
-                    </systemPropertyVariables>
-                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -189,30 +86,6 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
-        </dependency>
-
-        <!-- testing dependencies -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpcore</artifactId>
-            <version>4.4.13</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.testing.clients</artifactId>
-            <version>2.0.6</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>osgi.core</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
