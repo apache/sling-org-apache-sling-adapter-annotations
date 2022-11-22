@@ -34,7 +34,7 @@
         <tag>HEAD</tag>
     </scm>
 
-    <!-- compile with java 7 -->
+    <!-- compile with java 8 -->
     <properties>
         <sling.java.version>8</sling.java.version>
     </properties>
