@@ -15,7 +15,7 @@
     <parent>
         <groupId>org.apache.sling</groupId>
         <artifactId>sling</artifactId>
-        <version>33</version>
+        <version>49</version>
         <relativePath />
     </parent>
 
@@ -34,9 +34,9 @@
         <tag>HEAD</tag>
     </scm>
 
-    <!-- compile with java 7 -->
+    <!-- compile with java 8 -->
     <properties>
-        <sling.java.version>7</sling.java.version>
+        <sling.java.version>8</sling.java.version>
     </properties>
 
     <build>
@@ -44,7 +44,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M5</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
