@@ -15,7 +15,7 @@
     <parent>
         <groupId>org.apache.sling</groupId>
         <artifactId>sling</artifactId>
-        <version>49</version>
+        <version>62</version>
         <relativePath />
     </parent>
 
@@ -37,6 +37,7 @@
     <!-- compile with java 8 -->
     <properties>
         <sling.java.version>8</sling.java.version>
+        <project.build.outputTimestamp>2025-02-26T00:00:00Z</project.build.outputTimestamp>
     </properties>
 
     <build>
@@ -48,7 +49,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-invoker-plugin</artifactId>
-                <version>3.2.1</version>
                 <configuration>
                     <debug>false</debug>
                     <projectsDirectory>src/it</projectsDirectory>
@@ -62,13 +62,6 @@
                     <!-- this causes verbose output, probably good to have for CI builds? -->
                     <streamLogs>true</streamLogs>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.codehaus.groovy</groupId>
-                        <artifactId>groovy</artifactId>
-                        <version>3.0.7</version>
-                    </dependency>
-                </dependencies>
                 <executions>
                     <execution>
                         <id>integration-test</id>
