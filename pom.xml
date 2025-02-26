@@ -23,15 +23,13 @@
     <version>2.0.1-SNAPSHOT</version>
 
     <name>Apache Sling Adapter Annotations</name>
-    <description>
-        OSGi DS 1.4 component property type annotations for Sling adapters
-    </description>
+    <description>OSGi DS 1.4 component property type annotations for Sling adapters</description>
 
     <scm>
         <connection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-adapter-annotations.git</connection>
         <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/sling-org-apache-sling-adapter-annotations.git</developerConnection>
-        <url>https://github.com/apache/sling-org-apache-sling-adapter-annotations.git</url>
         <tag>HEAD</tag>
+        <url>https://github.com/apache/sling-org-apache-sling-adapter-annotations.git</url>
     </scm>
 
     <!-- compile with java 8 -->
@@ -39,6 +37,38 @@
         <sling.java.version>8</sling.java.version>
         <project.build.outputTimestamp>2025-02-26T00:00:00Z</project.build.outputTimestamp>
     </properties>
+
+    <dependencies>
+        <!-- all transitive dependencies should have scope "provided" to prevent classpath
+             pollution of referencing projects -->
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.component.annotations</artifactId>
+            <version>1.4.0</version>
+            <!-- for annotation @ComponentPropertyType -->
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.service.component</artifactId>
+            <version>1.4.0</version>
+            <!-- For link in Javadoc to default property types/annotations -->
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.api</artifactId>
+            <version>2.11.0</version>
+            <!-- For link in Javadoc to AdapterFactory- & AdapterManager-class -->
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.annotation.bundle</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -96,34 +126,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <!-- all transitive dependencies should have scope "provided" to prevent classpath
-             pollution of referencing projects -->
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.service.component.annotations</artifactId>
-            <version>1.4.0</version><!-- for annotation @ComponentPropertyType -->
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.service.component</artifactId>
-            <version>1.4.0</version><!-- For link in Javadoc to default property types/annotations -->
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.sling</groupId>
-            <artifactId>org.apache.sling.api</artifactId>
-            <version>2.11.0</version><!-- For link in Javadoc to AdapterFactory- & AdapterManager-class -->
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.annotation.bundle</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
 
 </project>
